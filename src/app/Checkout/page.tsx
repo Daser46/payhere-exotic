@@ -156,10 +156,9 @@ const CheckoutPage = () => {
 
             if (orderId) {
                 console.log(orderId);
-                let merchantId = "1231290"; // ✅ From Sandbox
-                let base64Secret = 'MTM5MDM1MzcwMDQ1ODY3MzU4NDEyNDA2NTk4NTIyODA2NTUwNjAw'; // ✅ From Sandbox
-                let decodedSecret = enc.Utf8.stringify(enc.Base64.parse(base64Secret)); // ✅ Decode
-                let hashedSecret = MD5(decodedSecret).toString().toUpperCase();
+                let merchantId = "1231290";
+                let secret = 'MTM5MDM1MzcwMDQ1ODY3MzU4NDEyNDA2NTk4NTIyODA2NTUwNjAw'; 
+                let hashedSecret = MD5(secret).toString().toUpperCase();
 
                 let amountFormatted = total.toFixed(2);
                 let currency = 'LKR';
@@ -167,6 +166,7 @@ const CheckoutPage = () => {
 
                 let payment = {
                     sandbox: true,
+                    merchant_id: merchantId,
                     return_url: 'https://payhere-exotic.vercel.app/Return',
                     cancel_url: window.location.href,
                     notify_url: 'https://payhere-exotic.vercel.app/api/payhere/notify',
@@ -204,8 +204,6 @@ const CheckoutPage = () => {
                     // Note: show an error page
                     console.log("Error:" + error);
                 };
-
-
             } else {
                 alert("order failed!")
                 return

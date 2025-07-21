@@ -14,10 +14,9 @@ export async function POST(req: NextRequest) {
         const received_md5sig = formData.get('md5sig')?.toString() || '';
         const txn_id = formData.get('payment_id')?.toString() || '';
 
-        const encodedSecret = 'MTM5MDM1MzcwMDQ1ODY3MzU4NDEyNDA2NTk4NTIyODA2NTUwNjAw';
+        const secret = 'MTM5MDM1MzcwMDQ1ODY3MzU4NDEyNDA2NTk4NTIyODA2NTUwNjAw';
 
-        const decodedSecret = enc.Utf8.stringify(enc.Base64.parse(encodedSecret));
-        const hashedSecret = MD5(decodedSecret).toString().toUpperCase();
+        const hashedSecret = MD5(secret).toString().toUpperCase();
 
         const local_md5sig = MD5(
             merchant_id +
