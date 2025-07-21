@@ -1,0 +1,196 @@
+@import "tailwindcss";
+/* From Uiverse.io by mrhyddenn */
+
+.context {
+    width: 100%;
+    position: absolute;
+    top: 50vh;
+}
+
+.area {
+    background: transparent;
+    width: 100%;
+    height: 100vh;
+}
+
+.circles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.circles li {
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 223, 0, 0.3);
+    animation: animate 25s linear infinite;
+    bottom: -150px;
+    backdrop-filter: blur(2px);
+    box-shadow: 0 0 10px rgba(255, 223, 0, 0.2);
+}
+
+.circles li:nth-child(1) {
+    left: 25%;
+    width: 80px;
+    height: 80px;
+    animation-delay: 0s;
+}
+
+.circles li:nth-child(2) {
+    left: 10%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 2s;
+    animation-duration: 12s;
+}
+
+.circles li:nth-child(3) {
+    left: 70%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 4s;
+}
+
+.circles li:nth-child(4) {
+    left: 40%;
+    width: 60px;
+    height: 60px;
+    animation-delay: 0s;
+    animation-duration: 18s;
+}
+
+.circles li:nth-child(5) {
+    left: 65%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 0s;
+}
+
+.circles li:nth-child(6) {
+    left: 75%;
+    width: 110px;
+    height: 110px;
+    animation-delay: 3s;
+}
+
+.circles li:nth-child(7) {
+    left: 35%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 7s;
+}
+
+.circles li:nth-child(8) {
+    left: 50%;
+    width: 25px;
+    height: 25px;
+    animation-delay: 15s;
+    animation-duration: 45s;
+}
+
+.circles li:nth-child(9) {
+    left: 20%;
+    width: 15px;
+    height: 15px;
+    animation-delay: 2s;
+    animation-duration: 35s;
+}
+
+.circles li:nth-child(10) {
+    left: 85%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 0s;
+    animation-duration: 11s;
+}
+
+@keyframes animate {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.3;
+        border-radius: 0;
+    }
+
+    50% {
+        opacity: 0.5;
+        transform: translateY(-500px) rotate(360deg);
+    }
+
+    100% {
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 0;
+        border-radius: 50%;
+    }
+}
+
+
+
+
+/* up button */
+/* From Uiverse.io by vinodjangid07 */
+/* Modern sticky back to top button */
+.button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    position: fixed;
+    bottom: 30px;
+    right: 16px;
+    z-index: 999;
+    backdrop-filter: blur(5px);
+}
+
+.svgIcon {
+    width: 16px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.svgIcon path {
+    fill: #ffffff;
+}
+
+.button:hover {
+    width: 140px;
+    border-radius: 30px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    transform: translateY(-2px);
+}
+
+.button:hover .svgIcon {
+    transform: translateY(-150%) scale(1.2);
+}
+
+.button::before {
+    position: absolute;
+    bottom: -20px;
+    content: "Back to Top";
+    color: #000000;
+    font-size: 0;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.button:hover::before {
+    font-size: 14px;
+    opacity: 1;
+    bottom: unset;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
