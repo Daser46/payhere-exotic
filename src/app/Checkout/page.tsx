@@ -203,8 +203,10 @@ const CheckoutPage = () => {
     return (
         <>
             <Script
+                type="text/javascript"
                 src="https://www.payhere.lk/lib/payhere.js"
-                strategy="beforeInteractive"
+                strategy="lazyOnload"
+                onLoad={() => console.log('PayHere script loaded!')}
             />
             <div className="relative z-20 overflow-hidden bg-gradient-to-b from-white to-gray-50 pt-4 font-inter">
                 <div className="w-5/6 mx-auto px-4 mb-10">
