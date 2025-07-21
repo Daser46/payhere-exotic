@@ -12,6 +12,7 @@ export async function POST(req: NextRequest) {
         const payhere_currency = formData.get('payhere_currency')?.toString() || '';
         const status_code = formData.get('status_code')?.toString() || '';
         const received_md5sig = formData.get('md5sig')?.toString() || '';
+        const txn_id = formData.get('payment_id') || '';
 
         const merchant_secret = process.env.NEXT_PAYHERE_SECRET || '';
 
@@ -27,7 +28,7 @@ export async function POST(req: NextRequest) {
         if (local_md5sig == received_md5sig && status_code === '2') {
             const { error } = await supabase
                 .from('orders')
-                .update({ status: 'paid' })
+                .update({ status: 'paid', txn_reference : txn_id })
                 .eq('id', order_id);
 
             if (error) {
