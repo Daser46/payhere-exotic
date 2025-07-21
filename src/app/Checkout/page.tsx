@@ -157,12 +157,14 @@ const CheckoutPage = () => {
             if (orderId != -1) {
                 console.log(orderId);
                 let merchantSecret = process.env.NEXT_PAYHERE_SECRET || 'Mzg0ODAwMTgwMDI1NTU2Nzk3MTQ0MjQ0MTU2MzA5MjI1NTM2ODQ2MQ==';
-                let merchantId = process.env.NEXT_MERCHANT_ID;
+                let merchantId = process.env.NEXT_MERCHANT_ID || "1231233";
                 let amount = 1000;
                 let hashedSecret = md5(merchantSecret).toString().toUpperCase();
                 let amountFormated = amount.toFixed(2);
                 let currency = 'LKR';
                 let hash = md5(merchantId + orderId.toString() + amountFormated + currency + hashedSecret).toString().toUpperCase();
+
+                console.log(merchantSecret, merchantId, hashedSecret, amountFormated);
 
                 let payment = {
                     sandbox: true,
@@ -182,6 +184,8 @@ const CheckoutPage = () => {
                     amount: total,
                     hash: hash
                 }
+
+                console.log(payment);
                 // @ts-ignore
                 payhere.startPayment(payment)
 
