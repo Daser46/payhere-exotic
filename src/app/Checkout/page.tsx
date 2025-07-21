@@ -156,8 +156,8 @@ const CheckoutPage = () => {
 
             if (orderId != -1) {
                 console.log(orderId);
-                let merchantSecret = process.env.NEXT_PAYHERE_SECRET || 'Mzg0ODAwMTgwMDI1NTU2Nzk3MTQ0MjQ0MTU2MzA5MjI1NTM2ODQ2MQ==';
-                let merchantId = process.env.NEXT_MERCHANT_ID || "1231233";
+                let merchantSecret = 'MTM5MDM1MzcwMDQ1ODY3MzU4NDEyNDA2NTk4NTIyODA2NTUwNjAw';
+                let merchantId = "1231290";
                 let amount = 1000;
                 let hashedSecret = md5(merchantSecret).toString().toUpperCase();
                 let amountFormated = amount.toFixed(2);
