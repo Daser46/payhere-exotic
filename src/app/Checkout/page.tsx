@@ -152,15 +152,15 @@ const CheckoutPage = () => {
 
     const handleSubmit = async () => {
         if (validateFormData(formData)) {
-            const orderId = await createNewOrder();
+            const orderId = "test123";
 
-            if (orderId != -1) {
+            if (orderId) {
                 console.log(orderId);
                 let merchantSecret = 'MTM5MDM1MzcwMDQ1ODY3MzU4NDEyNDA2NTk4NTIyODA2NTUwNjAw';
                 let merchantId = "1231290";
-                let amount = 1000;
+                let amount = 200;
                 let hashedSecret = md5(merchantSecret).toString().toUpperCase();
-                let amountFormated = amount.toFixed(2);
+                let amountFormated = amount.toFixed(2).toString();
                 let currency = 'LKR';
                 let hash = md5(merchantId + orderId.toString() + amountFormated + currency + hashedSecret).toString().toUpperCase();
 
