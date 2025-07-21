@@ -152,9 +152,9 @@ const CheckoutPage = () => {
 
     const handleSubmit = async () => {
         if (validateFormData(formData)) {
-            const orderId = `ORD-${Date.now()}`;
+            const orderId = await createNewOrder();
 
-            if (orderId) {
+            if (orderId != -1) {
                 console.log(orderId);
                 let merchantId = "1231290";
                 let secret = 'MTM5MDM1MzcwMDQ1ODY3MzU4NDEyNDA2NTk4NTIyODA2NTUwNjAw'; 
@@ -183,7 +183,7 @@ const CheckoutPage = () => {
                     amount: total,
                     hash: hash
                 }
-
+                //kemantha pls go through payhere docs
                 console.log(payment);
                 // @ts-ignore
                 payhere.startPayment(payment)
