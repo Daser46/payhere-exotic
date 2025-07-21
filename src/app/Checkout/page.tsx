@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import Navbar from '@/components/Navbar/page';
 import Breadcrumb from '@/components/Breadcrumb';
 import { error } from "console";
-import md5 from 'crypto-js/md5';
+import { enc, MD5 } from 'crypto-js';
 import axios from "axios";
 
 import Script from "next/script";
@@ -152,19 +152,18 @@ const CheckoutPage = () => {
 
     const handleSubmit = async () => {
         if (validateFormData(formData)) {
-            const orderId = "test123";
+            const orderId = `ORD-${Date.now()}`;
 
             if (orderId) {
                 console.log(orderId);
-                let merchantSecret = 'MTM5MDM1MzcwMDQ1ODY3MzU4NDEyNDA2NTk4NTIyODA2NTUwNjAw';
-                let merchantId = "1231290";
-                let amount = 200;
-                let hashedSecret = md5(merchantSecret).toString().toUpperCase();
-                let amountFormated = amount.toFixed(2).toString();
-                let currency = 'LKR';
-                let hash = md5(merchantId + orderId.toString() + amountFormated + currency + hashedSecret).toString().toUpperCase();
+                let merchantId = "1231290"; // ✅ From Sandbox
+                let base64Secret = 'MTM5MDM1MzcwMDQ1ODY3MzU4NDEyNDA2NTk4NTIyODA2NTUwNjAw'; // ✅ From Sandbox
+                let decodedSecret = enc.Utf8.stringify(enc.Base64.parse(base64Secret)); // ✅ Decode
+                let hashedSecret = MD5(decodedSecret).toString().toUpperCase();
 
-                console.log(merchantSecret, merchantId, hashedSecret, amountFormated);
+                let amountFormatted = total.toFixed(2);
+                let currency = 'LKR';
+                let hash = MD5(merchantId + orderId + amountFormatted + currency + hashedSecret).toString().toUpperCase();
 
                 let payment = {
                     sandbox: true,
